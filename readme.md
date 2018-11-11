@@ -13,15 +13,15 @@ todo
 ### What and Why DMX
 todo
 ### What are Channels ? 
-Lamp 1 is set to channel 1 (Physically on the lamp) . 
- Channel 1 is red on the first lamp . 
- Channel 2 is green on the first lamp . 
- Channel 3 is blue on the first lamp . 
- Channel 4 is white on the first lamp . 
- A total of 4 channels per lamp . 
-Lamp 2 is set to channel 5 (Physically on the lamp) . 
- Channel 5 is red on second lamp . 
- Channel 6 is green on second lamp . 
+Lamp 1 is set to channel 1 (Physically on the lamp) .   
+ Channel 1 is red on the first lamp .  
+ Channel 2 is green on the first lamp .    
+ Channel 3 is blue on the first lamp .    
+ Channel 4 is white on the first lamp .    
+ A total of 4 channels per lamp .    
+Lamp 2 is set to channel 5 (Physically on the lamp)    . 
+ Channel 5 is red on second lamp .    
+ Channel 6 is green on second lamp .    
  etc...  
    
 Some lamps have 8 channels that have functions like strobe, color changing or dimming. The value of each channel will effect the attrubite of that channel. For this case, we want to stick to 4 channel mode, or, in the code settings (below) set it to effectively bypass the other 4 channels. 
