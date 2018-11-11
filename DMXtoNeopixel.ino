@@ -1,4 +1,10 @@
 /*
+ * Pretend your DMX lights are neopixels using DFRobot shield and 4 channel
+ * lights + DMX_master.ino library 
+ * Lee Wilkins + Jane Hacker November 2018
+ */
+
+/*
   DMX_Master.ino - Example code for using the Conceptinetics DMX library
   Copyright (c) 2013 W.A. van der Meeren <danny@illogic.nl>.  All right reserved.
   This library is free software; you can redistribute it and/or
@@ -78,13 +84,14 @@ void setup() {
   dmx_master.enable();
   int startChannel = 1;
   int endChannel   = DMX_MASTER_CHANNELS;
-  int byteValue    = PER_TO_VAL(0); 
+  int byteValue    = PER_TO_VAL(0);
   dmx_master.setChannelRange ( startChannel, endChannel, byteValue );
 }
 
 void loop() {
   //set_rgb_value(1, 255, 0, 0,0); // Old no buffer style setting a pixel
-  pwarm(); // Old pwarm
+  sequenceOld(); // Old
+  sequenceBuffer();
 }
 
 void setPixel(int lampNumber, int red, int green, int blue, int white) {
@@ -128,7 +135,24 @@ void set_rgb_value(int lampNumber, int red, int green, int blue, int white) {
   dmx_master.setChannelValue(channelNumber + WHITE,  white );
 }
 
-void pwarm() { // pwarm using old no buffer style 
+
+void sequenceBuffer() {
+  for (int i = 0; i < 255; i++) {
+    for (int j = 0; j < lamps; j++) {
+      setPixel(j, i, 255, 0, 0);
+    }
+    showPixels();
+    delay(5);
+  }
+  for (int i = 255; i > 0; i--) {
+    for (int j = 0; j < lamps; j++) {
+      setPixel(j, i, 255, 0, 0);
+    }
+    showPixels();
+    delay(5);
+  }
+}
+void sequenceOld() { //  using old no buffer style
   for (int i = 0; i < 255; i++) {
     for (int j = 0; j < lamps; j++) {
       set_rgb_value(j, i, 255, 0, 0);
