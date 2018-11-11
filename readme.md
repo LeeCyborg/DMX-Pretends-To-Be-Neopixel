@@ -60,7 +60,7 @@ You can test your by looping through the first 10 channels of your light and see
        dmx_master.setChannelValue(i, 255 );   
        delay(100);
       }  
-      ```
+```
 
 ## Channel Spacing variable 
 This indicates the amount of channels between each lamp. If you are sure you are using 4 channel lights, set channelSpacing to 4, and then physically set your lamp channels to incrments of 4 (1, 5, 9 etc). If you aren't sure, you can set channelSpacing to 10, and set each of your lamps to 10, 20, 30, 40 etc). In this case, many channels wont get used, but you're sure not to overlap on channels. 
