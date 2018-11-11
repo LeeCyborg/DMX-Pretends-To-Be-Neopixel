@@ -89,7 +89,7 @@ void setPixel(int lampNumber, int red, int green, int blue, int white) {
   pBuff[index].lamp = lampNumber;
   pBuff[index].red = red;
   pBuff[index].green = green;
-  pBuff[indes].blue = blue;
+  pBuff[index].blue = blue;
   pBuff[index].white = white;
 }
 
