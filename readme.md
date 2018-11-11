@@ -54,12 +54,13 @@ Lamp 3 >> Channel 30
 
 You can test your by looping through the first 10 channels of your light and see how many channels there are. This turns each channel on and off so you can see what they do.   
 
-```   for (int i = 0; i < 10; i++) {   
-       dmx_master.setChannelValue(i, 255 );   
-       delay(1000);   
-       dmx_master.setChannelValue(i, 255 );   
-       delay(100);
-      }  
+```   
+for (int i = 0; i < 10; i++) {   
+ dmx_master.setChannelValue(i, 255 );   
+ delay(1000);   
+ dmx_master.setChannelValue(i, 255 );   
+ delay(100);
+}  
 ```
 
 ## Channel Spacing variable 
