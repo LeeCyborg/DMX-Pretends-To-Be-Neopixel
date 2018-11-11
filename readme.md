@@ -58,7 +58,7 @@ You can test your by looping through the first 10 channels of your light and see
 for (int i = 0; i < 10; i++) {   
  dmx_master.setChannelValue(i, 255 );   
  delay(1000);   
- dmx_master.setChannelValue(i, 255 );   
+ dmx_master.setChannelValue(i, 0 );   
  delay(100);
 }  
 ```
@@ -70,13 +70,17 @@ This indicates the amount of channels between each lamp. If you are sure you are
 There are two ways of using this code. The first is to directly assign a value to a lamp, and the second is "Neopixel style" where you add the code to the buffer and then show it. This mode exists so you can copy old neo pixel patterns taht are dependant on the buffer implimentation. 
 
 ### Direct control 
-` set_rgb_value(lamp, red, green, blue, white);` 
-` set_rgb_value(1, 255, 0, 0, 0);`
+```
+set_rgb_value(lamp, red, green, blue, white);   
+set_rgb_value(1, 255, 0, 0, 0);   
+```
 This will set the value of lamp 1 (lamps start at 1) to red (values between 0-255) immidately 
 
 ### Buffer control 
-`setPixel(1, 0, 255, 0, 0);
-showPixels(); ` 
+```
+setPixel(1, 0, 255, 0, 0);   
+showPixels(); `  
+```
 The buffer method emualtes NeoPixels and requires the showPixels command. This can replace strip.show(); in your previous noe pixel examples, and setPixel() can replace strip.setPixelColor().   
 
 ## Code
