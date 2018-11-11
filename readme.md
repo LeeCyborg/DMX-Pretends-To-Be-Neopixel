@@ -71,7 +71,7 @@ There are two ways of using this code. The first is to directly assign a value t
 
 ### Direct control 
 ```
-set_rgb_value(lamp, red, green, blue, white);   
+// set_rgb_value(lamp, red, green, blue, white);   
 set_rgb_value(1, 255, 0, 0, 0);   
 ```
 This will set the value of lamp 1 (lamps start at 1) to red (values between 0-255) immidately 
