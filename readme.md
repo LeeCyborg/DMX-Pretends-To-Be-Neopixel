@@ -11,19 +11,21 @@ This uses the [DF Robot DMX Shield](https://www.dfrobot.com/product-984.html) to
 ## What is going on? 
 todo
 ### What and Why DMX
-todo
+DMX is a standard lighting system understood by many control boards and existing systems. Its great for larger scale installations or interactive pieces that require more power than even the brightest WS2811 addressable LEDs or need to be controleld through existing stage lighting ect. 
 ### What are Channels ? 
+An oversimplification, but all you really need to know, descripton of channels: A channel referes to an address of a piece of information. For our purposes, they refer to the R, G, B, W values on lights. Each channel contains a piece of data. Each light is assigned a channel, and the number of that channel is the first piece of data for that light. There are a maximum of 512 channels for a set of DMX lights, although more can be added as "Slave" mode.   
+**In 4 channel mode this looks like:**    
 Lamp 1 is set to channel 1 (Physically on the lamp)    
  Channel 1 is red on the first lamp   
  Channel 2 is green on the first lamp      
  Channel 3 is blue on the first lamp      
  Channel 4 is white on the first lamp      
  A total of 4 channels per lamp      
-Lamp 2 is set to channel 5 (Physically on the lamp)    . 
+Lamp 2 is set to channel 5 (Physically on the lamp)   
  Channel 5 is red on second lamp      
  Channel 6 is green on second lamp      
  etc...    
-   
+    
 Some lamps have 8 channels that have functions like strobe, color changing or dimming. The value of each channel will effect the attrubite of that channel. For this case, we want to stick to 4 channel mode, or, in the code settings (below) set it to effectively bypass the other 4 channels.   
 
 ### What are Slave Mode, and channel modes?
@@ -49,9 +51,19 @@ Lamp 1 >> Channel 10
 Lamp 2 >> Channel 20    
 Lamp 3 >> Channel 30    
 ... etc ...   
+## Channel Spacing variable 
+This indicates the amount of channels between each lamp. If you are sure you are using 4 channel lights, set channelSpacing to 4, and then physically set your lamp channels to incrments of 4 (1, 5, 9 etc). If you aren't sure, you can set channelSpacing to 10, and set each of your lamps to 10, 20, 30, 40 etc). In this case, many channels wont get used, but you're sure not to overlap on channels. 
 
 ## Style and buffers
-todo
+There are two ways of using this code. The first is to directly assign a value to a lamp, and the second is "Neopixel style" where you add the code to the buffer and then show it. This mode exists so you can copy old neo pixel patterns taht are dependant on the buffer implimentation. 
+
+### Direct control 
+```// set_rgb_value(lamp, red, green, blue, white);   
+   set_rgb_value(1, 255, 0, 0, 0);
+```
+This will set the value of lamp 1 (lamps start at 1) to red (values between 0-255). 
+
+### Buffer control 
 
 ## Code
 todo
