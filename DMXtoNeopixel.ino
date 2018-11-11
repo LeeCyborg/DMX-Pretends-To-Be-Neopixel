@@ -1,3 +1,6 @@
+
+#include <Conceptinetics.h>
+
 /*
  * Pretend your DMX lights are neopixels using DFRobot shield and 4 channel
  * lights + DMX_master.ino library 
@@ -49,7 +52,7 @@
 #define RXEN_PIN  2
 #define lamps 16
 #define index = 0;
-struct pixelBuffer {
+struct pixelBuffer { // Struct for buffer
   int lamp;
   int red;
   int green;
@@ -62,11 +65,11 @@ pixelBuffer pBuff[lamps]; // array of buffer pieces the size of the amount of la
 //
 #define MAX_VALUE 255
 #define PER_TO_VAL(percent) ((MAX_VALUE/100) * percent)
-typedef enum DmxCh {
-  RED    = 0,
+typedef enum DmxCh { // Modifiers for each channel, 
+  RED    = 0, // red is the first, no modifier
   GREEN  = 1,
   BLUE   = 2,
-  WHITE  = 3
+  WHITE  = 3 // white is the last, add 3 to wherever you start
 
 } DmxCh;
 
@@ -80,9 +83,9 @@ void setup() {
 }
 
 void loop() {
-  //set_rgb_value(1, 255, 0, 0,0); // Old no buffer style setting a pixel
-  sequenceOld(); // Old
-  sequenceBuffer();
+  set_rgb_value(1, 255, 0, 0,0); // direct buffer style setting a pixel
+  sequenceDirect(); // Direct! GO go NAO
+  sequenceBuffer(); // Buff buffer
 }
 
 void setPixel(int lampNumber, int red, int green, int blue, int white) {
@@ -116,7 +119,7 @@ void clearBuffer() {
   index=0;
 }
 
-// Old function that does it without the buffer
+// direct set a color
 void set_rgb_value(int lampNumber, int red, int green, int blue, int white) {
   int channelNumber = lampNumber * channelSpacing;
   // Set each of the colors
@@ -143,7 +146,7 @@ void sequenceBuffer() {
     delay(5);
   }
 }
-void sequenceOld() { //  using old no buffer style
+void sequenceDirect() { //  using no buffer, direct control style
   for (int i = 0; i < 255; i++) {
     for (int j = 0; j < lamps; j++) {
       set_rgb_value(j, i, 255, 0, 0);
