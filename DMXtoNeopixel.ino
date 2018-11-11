@@ -31,33 +31,24 @@
 //   and you will see the lights blink to the data being sent over the line!
 //
 // * This will only work if the RX-???? jummper is also unset.
-
-
-//
-// The number of channels the master will control
-//
-
-
-// The above depends on amount of memory you have avaliable
-// Control data will always be sent to all 255 channels
-// A default of the first 100 channels will fit on a typical UNO
-// A minimum of 1 channel
 //
 // If you are controlling lights for example:
-// Channel 1 is white
-// Channel 2 is Red
-// Channel 3 is Green
-// Channel 4 is Blue
+// Channel 1 is red first lamp
+// Channel 2 is green
+// Channel 3 is blue
+// Channel 4 is white
 //
-// A total of 4 channels!
+// A total of 4 channels per lamp
+// Set your first lamp to slave and second lamp to 5 (or other see ChannelSpacing variable)
+// Channel 5 is red second lamp
+// channel 6 is green second lamp
 
 
-
-#define DMX_MASTER_CHANNELS   170 // 10 channels for each light. maybe to be fixed
-const int B = 4275;               // B value of the thermistor
-const int R0 = 100000;            // R0 = 100k
+#define channelSpacing  10 // 10, 20, 30....  light chanels. This will work for 4 or 8 channel lights
+#define DMX_MASTER_CHANNELS   512 // has to be
 #define RXEN_PIN  2
 #define lamps 16
+#define index = 0;
 struct pixelBuffer {
   int lamp;
   int red;
@@ -95,17 +86,16 @@ void loop() {
 }
 
 void setPixel(int lampNumber, int red, int green, int blue, int white) {
-  pBuff[lampNumber].lamp = lampNumber;
-  pBuff[lampNumber].red = red;
-  pBuff[lampNumber].green = green;
-  pBuff[lampNumber].blue = blue;
-  pBuff[lampNumber].white = white;
-
+  pBuff[index].lamp = lampNumber;
+  pBuff[index].red = red;
+  pBuff[index].green = green;
+  pBuff[indes].blue = blue;
+  pBuff[index].white = white;
 }
 
 void showPixels() {
-  for (int i = 0; i < lamps; i++) {
-    int channelNumber = pBuff[i].lamp * 10;
+  for (int i = 0; i < index; i++) {
+    int channelNumber = pBuff[i].lamp * channelSpacing;
     // Set each of the colors
     dmx_master.setChannelValue(channelNumber + RED,   pBuff[i].red  );
     dmx_master.setChannelValue(channelNumber + GREEN, pBuff[i].green);
@@ -116,18 +106,19 @@ void showPixels() {
 }
 
 void clearBuffer() {
-  for (int i = 0; i < lamps + 1; i++) {
+  for (int i = 0; i < index + 1; i++) {
     pBuff[i].lamp = i;
     pBuff[i].red = 0;
     pBuff[i].green = 0;
     pBuff[i].blue = 0;
     pBuff[i].white = 0;
   }
+  index=0;
 }
 
-// Old function that does it without th ebuffer
+// Old function that does it without the buffer
 void set_rgb_value(int lampNumber, int red, int green, int blue, int white) {
-  int channelNumber = lampNumber * 10;
+  int channelNumber = lampNumber * channelSpacing;
   // Set each of the colors
   dmx_master.setChannelValue(channelNumber + RED,   red  );
   dmx_master.setChannelValue(channelNumber + GREEN, green);
