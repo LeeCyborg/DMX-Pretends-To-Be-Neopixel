@@ -1,10 +1,8 @@
-
-#include <Conceptinetics.h>
-
 /*
  * Pretend your DMX lights are neopixels using DFRobot shield and 4 channel
  * lights + DMX_master.ino library 
- * Lee Wilkins + Jane Hacker November 2018
+ * Lee (Lindy) Wilkins + Jane Hacker November 2018
+ * https://github.com/LeeRobot/DMX-Pretends-To-Be-Neopixel 
  */
 
 /*
