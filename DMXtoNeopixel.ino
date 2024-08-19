@@ -81,9 +81,9 @@ void setup() {
 }
 
 void loop() {
-  set_rgb_value(1, 255, 0, 0,0); // direct buffer style setting a pixel
-  sequenceDirect(); // Direct! GO go NAO
-  sequenceBuffer(); // Buff buffer
+  set_rgb_value(1, 255, 0, 0, 0); // direct style setting a pixel to a color 
+  // sequenceDirect(); // Direct control of a pixel
+  // sequenceBuffer(); // Use a buffer, set all pixels then show them
 }
 
 void setPixel(int lampNumber, int red, int green, int blue, int white) {
